@@ -63,8 +63,7 @@ export default {
                     }
                 })
             }catch(e) {
-                // TODO SNACKBAR
-                console.log(e)
+                this.$store.dispatch('snackbar/setSnackbar', {color: 'error', text: "Already logged in"})
             }
         }
     },

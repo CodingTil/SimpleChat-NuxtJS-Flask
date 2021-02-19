@@ -55,7 +55,6 @@
 
 <script>
 import Message from "../components/Message"
-import { mapMutations } from "vuex";
 
 export default {
   data() {
@@ -82,14 +81,19 @@ export default {
                 this.message = ''
                 // Set the new messages
                 this.$store.commit("messages/addMessage", result.data)
+
                 // Scroll list to bottom
-                var objDiv = document.getElementById("messageList");
-                objDiv.scrollTop = objDiv.scrollHeight;
+                window.setTimeout(() => {
+                  var objDiv = document.getElementById("messageList");
+                  objDiv.scrollTop = objDiv.scrollHeight;
+                }, 500)
               }else {
+                this.$store.dispatch('snackbar/setSnackbar', {color: 'error', text: "Login invalid."})
                 this.$auth.logout()
               }
           })
           .catch(error => {
+              this.$store.dispatch('snackbar/setSnackbar', {color: 'error', text: "Internal error."})
               this.$auth.logout()
           })
       }
@@ -114,10 +118,12 @@ export default {
                 console.log(result)
               }else {
                 window.clearInterval(fetch_loop)
+                this.$store.dispatch('snackbar/setSnackbar', {color: 'error', text: "Login invalid."})
                 obj.$auth.logout()
               }
           })
           .catch(error => {
+              this.$store.dispatch('snackbar/setSnackbar', {color: 'error', text: "Internal error."})
               window.clearInterval(fetch_loop)
               obj.$auth.logout()
           })
@@ -126,8 +132,10 @@ export default {
     fetch(this)
 
     // Scroll list to bottom
-    var objDiv = document.getElementById("messageList");
-    objDiv.scrollTop = objDiv.scrollHeight;
+    window.setTimeout(() => {
+      var objDiv = document.getElementById("messageList");
+      objDiv.scrollTop = objDiv.scrollHeight;
+    }, 500)
 
     // Fetch new messages loop
     fetch_loop = window.setInterval(() => {

@@ -3,7 +3,7 @@
     <v-btn text color="primary" to="/">SimpleChat</v-btn>
     <v-spacer />
 
-    <v-btn text color="info" v-if="$auth.loggedIn" @click="$auth.logout()">
+    <v-btn text color="info" v-if="$auth.loggedIn" @click="logout">
       Logout
     </v-btn>
     <v-btn text color="primary" to="/about">About</v-btn>
@@ -12,7 +12,12 @@
 
 <script>
 export default {
-    name: "AppHeader",
+    methods: {
+      logout() {
+        this.$auth.logout()
+        this.$store.dispatch('snackbar/setSnackbar', {color: 'info', text: "Logged out"})
+      }
+    }
 }
 </script>
 

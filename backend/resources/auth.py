@@ -77,7 +77,6 @@ class LogoutAPI(Resource):
     def post(self):
         jti = get_jwt()['jti']
         user = get_user_by_jti(jti)
-        print(json.dumps(user, cls=UserEncoder))
         if user:
             users.remove(user)
             return {'message': 'You have been logged out.'}
