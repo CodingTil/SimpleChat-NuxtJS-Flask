@@ -14,7 +14,6 @@
                             flat
                             background-color="primary"
                             color="tertiary"
-                            @keyup.enter="validateAndLogin"
                         ></v-text-field>
                     </v-container>
 

@@ -21,16 +21,17 @@
       <v-container>
         <v-row justify="center">
           <v-col :cols="10">
-            <v-text-field
+            <v-textarea
               v-model="message"
               :rules="messageRules"
               :counter="maximumLength"
               required
               rounded
               flat
+              auto-grow
+              rows="1"
               background-color="primary"
               color="tertiary"
-              @keyup.enter="validateAndSend"
             />
           </v-col>
           <v-col :cols="1">

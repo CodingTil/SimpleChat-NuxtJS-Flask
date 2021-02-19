@@ -11,7 +11,7 @@
                 {{ message.sender }}
             </v-card-title>
             <v-card-subtitle :class="isSender ? 'primary--text' : 'black--text'">
-                {{ message.message }}
+                <span style="white-space: pre-line;"> {{ message.message }} </span>
             </v-card-subtitle>
         </v-card>
     </v-container>
